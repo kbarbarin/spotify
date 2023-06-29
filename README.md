@@ -1,2 +1,2 @@
 # spotify
-A Spotify Clone
+A Spotify Clone made in React JS
