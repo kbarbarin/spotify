@@ -3,8 +3,8 @@ import axios from "axios";
 const CLIENT_ID = process.env.REACT_APP_CLIENT_ID;
 const CLIENT_SECRET = process.env.REACT_APP_CLIENT_SECRET;
 
-export default async function connect(props) {
-    console.log("props = " + JSON.stringify(props));
+export default async function connect( setToken ) {
+    // const { setToken } = props;
 
     const authOptions = {
         url: 'https://accounts.spotify.com/api/token',
@@ -18,15 +18,14 @@ export default async function connect(props) {
         json: true
     };
 
-    // axios.post(authOptions.url, authOptions.form, { headers: authOptions.headers })
-        // .then(response => {
-            // if (response.status === 200) {
-                // const token = response.data.access_token;
-                // console.log('token = ' + token);
-                // props.setToken("reussi");
-            // }
-        // })
-        // .catch(error => {
-            // console.log(error);
-        // });
+    axios.post(authOptions.url, authOptions.form, { headers: authOptions.headers })
+        .then(response => {
+            if (response.status === 200) {
+                const token = response.data.access_token;
+                setToken(token);
+            }
+        })
+        .catch(error => {
+            console.log(error);
+        });
 }

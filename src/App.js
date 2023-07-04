@@ -1,18 +1,24 @@
 import { useEffect, useState } from "react";
 
+import SearchBar from "./pages/Home/SearchBar/SearchBar.jsx";
+import SearchResult from "./pages/Home/SearchResult/SearchResult.jsx";
+
 import connect from "./api/connect.jsx";
-import searchPlaylists from "./api/Search/searchPlaylists.jsx";
 
 function App() {
   const [token, setToken] = useState("test");
-  const [searchKey, setSearchKey] = useState("");
   const [playlists, setPlaylists] = useState([]);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-      connect(setToken);
+    const fetchToken = async () => {
+      const token = await connect(setToken);
+      setToken(token);
       setLoading(false);
-  }, [])
+    };
+
+    fetchToken();
+  }, []);
 
 
   return (
@@ -22,16 +28,8 @@ function App() {
       </header>
       <div>
         {!loading ? <div>
-          <form onSubmit={() => searchPlaylists(token, searchKey, setPlaylists)}>
-            <input type="text" onChange={e => setSearchKey(e.target.value)} />
-            <button type={"submit"}>Search</button>
-          </form>
-          {playlists.map(playlist => (
-            <div key={playlist.id}>
-              {playlist.images.length ? <img width={"10%"} src={playlist.images[0].url} alt="" /> : <div>No Image</div>}
-              {playlist.name}
-            </div>
-          ))}
+          <SearchBar token={token} setPlaylists={setPlaylists}/>
+          <SearchResult token={token} playlists={playlists}/>
         </div>
           :
           <p>loading...</p>
