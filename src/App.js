@@ -7,7 +7,7 @@ import connect from "./api/connect.jsx";
 import OptionBar from "./pages/Home/OptionBar/OptionBar.jsx";
 
 function App() {
-  const [token, setToken] = useState("test");
+  const [token, setToken] = useState("");
   const [results, setResult] = useState([]);
   const [option, setOption] = useState("playlist");
   const [loading, setLoading] = useState(true);
@@ -15,8 +15,7 @@ function App() {
 
   useEffect(() => {
     const fetchToken = async () => {
-      const token = await connect(setToken);
-      setToken(token);
+      await connect(setToken);
       setLoading(false);
     };
 
@@ -33,7 +32,7 @@ function App() {
         {!loading ? <div>
           <SearchBar token={token} setResult={setResult} option={option} setSearchKey={setSearchKey} searchKey={searchKey}/>
           <OptionBar option={option} setOption={setOption} token={token} results={results} setResult={setResult} setSearchKey={setSearchKey} searchKey={searchKey}/>
-          <DisplayResult token={token} results={results}/>
+          <DisplayResult results={results} option={option} token={token}/>
         </div>
           :
           <p>loading...</p>

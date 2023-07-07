@@ -1,4 +1,4 @@
-import searchPlaylists from "../../../api/Search/searchPlaylists";
+import searchPlaylists from "../../../api/search/searchPlaylists";
 
 export default function SearchBar({token, setResult, option, setSearchKey, searchKey}) {
 

@@ -1,12 +1,11 @@
-import searchPlaylists from "../../../api/Search/searchPlaylists";
+import searchPlaylists from "../../../api/search/searchPlaylists";
 
 export default function OptionBar({option, setOption, results, setResult, token, searchKey}) {
 
     const handleSelection = (selection) => {
         setOption(selection);
-        console.log(results);
         if (results?.length)
-            searchPlaylists(token, searchKey, setResult, option);
+            searchPlaylists(token, searchKey, setResult, selection);
     }
     return (
         <li style={{display: "flex"}} >
