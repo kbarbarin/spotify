@@ -1,3 +1,17 @@
 .playlistElements-container {
-    background: linear-gradient(#232322 5%, #121212 25%);
+    background: linear-gradient(#232322 1%, #121212 5%);
+}
+
+h3 {
+    margin: 20px;
+}
+
+.line {
+    height: 1px;
+    width: 98%;
+    background-color: #858585;
+    border: none;
+    margin-left: 1%;
+    margin-right: 1%;
+    margin-bottom: 30px;
 }

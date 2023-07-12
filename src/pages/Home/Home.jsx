@@ -11,7 +11,7 @@ import { AuthContext } from "../../utils/Context/AuthContext.js"
 import './Home.css'
 
 function Home() {
-    const {setToken} = useContext(AuthContext);
+  const { setToken } = useContext(AuthContext);
   const [loading, setLoading] = useState(true);
   const [searchKey, setSearchKey] = useState("");
 
@@ -27,15 +27,18 @@ function Home() {
 
 
   return (
-    <div style={{ backgroundColor: 'black', height: '100vh', width: '100vw'}}>
-        {!loading ? <div>
-          <SearchBar setSearchKey={setSearchKey} searchKey={searchKey}/>
-          <OptionBar setSearchKey={setSearchKey} searchKey={searchKey}/>
-          <DisplayResult />
-        </div>
-          :
-          <p>loading...</p>
-        }
+    <div className="home-border">
+      <div className="home-container">
+          {!loading ?
+            <>
+              <SearchBar setSearchKey={setSearchKey} searchKey={searchKey} />
+              <OptionBar setSearchKey={setSearchKey} searchKey={searchKey} />
+              <DisplayResult />
+            </>
+            :
+            <p>loading...</p>
+          }
+      </div>
     </div>
   );
 }

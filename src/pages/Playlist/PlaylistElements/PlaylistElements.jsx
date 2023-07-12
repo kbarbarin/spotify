@@ -23,6 +23,13 @@ export default function PlaylistElements() {
         fetchPlaylist();
     });
 
+    const calculateTime = (ms) => {
+        const min = Math.floor((ms/1000/60) << 0);
+        const sec = Math.floor((ms/1000) % 60);
+
+        return (min.toString() + ':' + sec.toString());
+    }
+
     return (
         <>
             {!loading &&
@@ -44,7 +51,8 @@ export default function PlaylistElements() {
                             <h3>Durée</h3>
                         </div>
                     </div>
-                    {playlist.tracks.items.map((track, index) => (
+                    <hr className="line"/>
+                    {playlist?.tracks?.items.map((track, index) => (
                         <div key={index} style={{ display: "flex" }}>
                             <div style={{ textAlign: 'center', flex: 1 / 21 }}>
                                 <p>{index + 1}</p>
@@ -64,7 +72,7 @@ export default function PlaylistElements() {
                                 <p> {moment(track.added_at).format('D MMMM YYYY')}</p>
                             </div>
                             <div style={{ flex: 1.5 / 21 }}>
-                                <p>{track.track?.duration_ms}</p>
+                                <p>{calculateTime(track.track?.duration_ms)}</p>
                             </div>
                         </div>
                     ))}

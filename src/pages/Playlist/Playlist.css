@@ -7,4 +7,7 @@
     background: linear-gradient(#565656, #2B2B2A);
 }
 
-
+.playlist-image {
+    width: 15%;
+    padding: 25px;
+}

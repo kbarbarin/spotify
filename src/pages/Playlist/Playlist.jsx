@@ -13,7 +13,7 @@ export default function Playlist() {
 
     useEffect(() => {
         if (playlist.length) {
-            console.table(playlist);
+            console.log(playlist);
             setLoading(false);
         }
     }, [playlist]);
@@ -21,7 +21,7 @@ export default function Playlist() {
     return (
         <>
             <div className="playlist-container">
-                <img width={"10%"} src={location.state.playlist.images[0].url} alt="" />
+                <img className="playlist-image" src={location.state.playlist.images[0].url} alt="" />
                 <div className="playlist-child">
                     <h3>Playlist</h3>
                     <h1>{location.state.playlist.name}</h1>

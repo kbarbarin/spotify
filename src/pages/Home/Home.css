@@ -1,0 +1,15 @@
+.home-border {
+    background-color: black;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.home-container {
+    background-color: #181818;
+    border-radius: 15px 15px 0px 0px;
+    margin-top: 10px;
+    width: 98%;
+    height: 98%;
+}
