@@ -1,30 +1,35 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { useLocation, useParams } from "react-router";
+import moment from "moment";
 
 import getPlaylist from "../../../api/getPlaylist/getPlaylist";
+import { AuthContext } from "../../../utils/Context/AuthContext";
 
 export default function PlaylistElements() {
     const { id } = useParams();
     const location = useLocation();
-    const [playlist, setPlaylist] = useState([]);
     const [loading, setLoading] = useState(true);
+    const {playlist, setPlaylist} = useContext(AuthContext);
 
     useEffect(() => {
-        const fetchToken = async () => {
+        moment.locale('fr')
+        const fetchPlaylist = async () => {
             await getPlaylist(location.state.token, id, setPlaylist);
             setLoading(false);
         };
 
-        fetchToken();
-    }, [id, location.state.token]);
+        fetchPlaylist();
+    });
 
     return (
         <div>
             {!loading &&
                 <div>
                     <div style={{ display: "flex" }}>
-                        <div style={{ display: 'flex', flex: 8.5 / 21 }}>
+                        <div style={{ textAlign: 'center', flex: 1 / 21 }}>
                             <h3>#</h3>
+                        </div>
+                        <div style={{ flex: 7.5 / 21 }}>
                             <h3>Titre</h3>
                         </div>
                         <div style={{ flex: 5.5 / 21 }}>
@@ -37,24 +42,27 @@ export default function PlaylistElements() {
                             <h3>Durée</h3>
                         </div>
                     </div>
-                    {playlist.map((track, index) => (
-                        <div style={{ display: "flex" }}>
-                            <div style={{ display: 'flex', flex: 8.5 / 21 }}>
+                    {playlist.tracks.items.map((track, index) => (
+                        <div key={index} style={{ display: "flex" }}>
+                            <div style={{ textAlign: 'center', flex: 1 / 21 }}>
                                 <p>{index + 1}</p>
-                                <img src={track.track.album.images[2].url} height={64} width={64} alt="" />
-                                <div>
-                                    <p>{track.track.name}</p>
+                            </div>
+                            <div style={{ display: 'flex', flex: 7.5 / 21 }}>
+                                <img src={track.track?.album.images[2].url} height={64} width={64} alt="" />
+                                <div style={{marginLeft: "15px"}}>
+                                    <p>{track.track?.name}</p>
                                     <p>{track.track?.artists[0].name}</p>
                                 </div>
                             </div>
                             <div style={{ flex: 5.5 / 21 }}>
-                                <p>{track.track.album.name}</p>
+                                <p>{track.track?.album.name}</p>
                             </div>
                             <div style={{ flex: 5.5 / 21 }}>
-                                <p>{track.added_at}</p>
+                            
+                                <p> {moment(track.added_at).format('D MMMM YYYY')}</p>
                             </div>
                             <div style={{ flex: 1.5 / 21 }}>
-                                <p>{track.track.duration_ms}</p>
+                                <p>{track.track?.duration_ms}</p>
                             </div>
                         </div>
                     ))}

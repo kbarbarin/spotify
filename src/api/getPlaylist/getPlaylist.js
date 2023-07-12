@@ -8,8 +8,7 @@ export default async function getPlaylist (token, id, setPlaylist) {
   })
     .then(response => {
       if (response.status === 200) {
-        console.log(response.data.tracks.items);
-        setPlaylist(response.data.tracks.items);
+        setPlaylist(response.data);
       }
     })
     .catch(error => {

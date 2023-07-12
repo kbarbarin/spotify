@@ -1,0 +1,46 @@
+.result-container {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    column-gap: 20px;
+    row-gap: 70px;
+    margin: 5% 10%;
+}
+
+.result-img {
+    width: 200px;
+    height: 200px;
+    border-radius: 5px;
+    display: block;
+    margin: 0 auto 10%;
+    position: relative;
+}
+
+.result-img-artist {
+    width: 200px;
+    height: 200px;
+    border-radius: 60%;
+    display: block;
+    margin: 0 auto 10%;
+    position: relative;
+}
+
+
+.result-info {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 220px;
+    padding: 3% 1%;
+    color: white;
+    font-weight: 700;
+    text-align: center;
+    background-color: #131313;
+    border-radius: 10px;
+    transition: transform .1s;
+}
+
+.result-info:hover {
+    cursor: pointer;
+    transform: scale(1.1);
+    background-color: #282828;
+}

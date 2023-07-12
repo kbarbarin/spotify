@@ -1,0 +1,27 @@
+* {
+    background-color: black;
+}
+
+.searchBar-container {
+    text-align: center;
+    margin-top: 3%;
+}
+
+.searchBar-input {
+    width: 30%;
+    padding: 1%;
+    border-radius: 30px;
+    text-indent: 15px;
+    font-size: 15px;
+    border: none;
+    background-color: #242424;
+    color: white;
+    font-size: 700;
+}
+
+.searchBar-input:focus {
+    border: 2px solid white;
+    font-weight: 700;
+    color: white;
+    outline: none;
+}

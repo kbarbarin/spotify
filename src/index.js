@@ -5,22 +5,25 @@ import {
     RouterProvider,
 } from "react-router-dom";
 
-import App from './App';
+import Home from './pages/Home/Home';
 import Playlist from "./pages/Playlist/Playlist";
 import PlaylistElements from "./pages/Playlist/PlaylistElements/PlaylistElements";
+import AuthContextProvider from "./utils/Context/AuthContext";
+
+import './index.css';
 
 const router = createBrowserRouter([
     {
         path: "/",
-        element: <App />,
+        element: <Home />,
     },
     {
         path: "/playlist",
         element: <Playlist />,
         children: [
             {
-            path: "/playlist/:id",
-            element: <PlaylistElements />
+                path: "/playlist/:id",
+                element: <PlaylistElements />
             }
         ]
     },
@@ -28,5 +31,7 @@ const router = createBrowserRouter([
 ]);
 
 ReactDOM.createRoot(document.getElementById("root")).render(
-    <RouterProvider router={router} />
+    <AuthContextProvider>
+        <RouterProvider router={router} />
+    </AuthContextProvider>
 );
