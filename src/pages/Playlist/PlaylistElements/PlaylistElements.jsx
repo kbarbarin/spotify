@@ -5,6 +5,8 @@ import moment from "moment";
 import getPlaylist from "../../../api/getPlaylist/getPlaylist";
 import { AuthContext } from "../../../utils/Context/AuthContext";
 
+import './PlaylistElements.css'
+
 export default function PlaylistElements() {
     const { id } = useParams();
     const location = useLocation();
@@ -22,9 +24,9 @@ export default function PlaylistElements() {
     });
 
     return (
-        <div>
+        <>
             {!loading &&
-                <div>
+                <div className="playlistElements-container">
                     <div style={{ display: "flex" }}>
                         <div style={{ textAlign: 'center', flex: 1 / 21 }}>
                             <h3>#</h3>
@@ -50,7 +52,7 @@ export default function PlaylistElements() {
                             <div style={{ display: 'flex', flex: 7.5 / 21 }}>
                                 <img src={track.track?.album.images[2].url} height={64} width={64} alt="" />
                                 <div style={{marginLeft: "15px"}}>
-                                    <p>{track.track?.name}</p>
+                                    <p style={{color: 'white'}}>{track.track?.name}</p>
                                     <p>{track.track?.artists[0].name}</p>
                                 </div>
                             </div>
@@ -68,6 +70,6 @@ export default function PlaylistElements() {
                     ))}
                 </div>
             }
-        </div>
+        </>
     )
 }

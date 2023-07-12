@@ -1,10 +1,10 @@
-* {
-    background-color: black;
-}
+/* * {
+} */
 
 .searchBar-container {
+    background-color: black;
     text-align: center;
-    margin-top: 3%;
+    padding-top: 3%;
 }
 
 .searchBar-input {

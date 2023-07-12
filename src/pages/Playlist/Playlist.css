@@ -1,0 +1,10 @@
+.playlist-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 30vh;
+    width: 100%;
+    background: linear-gradient(#565656, #2B2B2A);
+}
+
+

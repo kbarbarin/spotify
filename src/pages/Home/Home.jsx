@@ -27,7 +27,7 @@ function Home() {
 
 
   return (
-    <div style={{height: '100vh', width: '100vw'}}>
+    <div style={{ backgroundColor: 'black', height: '100vh', width: '100vw'}}>
         {!loading ? <div>
           <SearchBar setSearchKey={setSearchKey} searchKey={searchKey}/>
           <OptionBar setSearchKey={setSearchKey} searchKey={searchKey}/>
