@@ -14,7 +14,7 @@ export default function PlaylistElementsCard({ track, index }) {
     }
 
     return (
-        <div key={index}
+        <div
             onMouseEnter={() => setIsHover(true)}
             onMouseLeave={() => setIsHover(false)}
             className={isHover ? "playlistElementCard-container-hover" : "playlistElementCard-container"}

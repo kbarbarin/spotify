@@ -47,7 +47,9 @@ export default function PlaylistElements() {
                     </div>
                     <hr className="line" />
                     {playlist?.tracks?.items.map((track, index) => (
+                        <div key={index}>
                         <PlaylistElementsCard track={track} index={index}/>
+                        </div>
                     ))}
                 </div>
             }

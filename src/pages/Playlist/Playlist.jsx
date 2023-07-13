@@ -40,13 +40,11 @@ export default function Playlist() {
                         <>
                             <p style={{marginTop: '15px', marginBottom: '15px'}}>{playlist.description}</p>
                             <div style={{ display: 'flex' }}>
-                                <img src={playlist.owner} alt="" />
+                                <img src={playlist?.owner} alt="" />
                                 <p style={{color: 'white'}}>
-                                    <a className="link" href={playlist.owner.external_urls.spotify}>{playlist.owner.display_name}</a> •
-                                    {playlist.followers.total} {playlist.followers.total > 1 ? "followers" : "follower"}•
-                                    {playlist.likes} {playlist?.likes > 1 ? "likes" : "like"} • {playlist.tracks.total} {playlist.tracks.total > 1 ? "titres" : "titre"}, 
+                                    <a className="link" href={playlist.owner.external_urls.spotify}>{playlist.owner.display_name}</a> • {playlist.followers.total} {playlist.followers.total > 1 ? "likes" : "like"} • {playlist.tracks.total} {playlist.tracks.total > 1 ? "titres" : "titre"},&nbsp;
                                 </p>
-                                <p> {getTotalTime()}</p>
+                                <p>{getTotalTime()}</p>
                             </div>
                         </>
                     }
