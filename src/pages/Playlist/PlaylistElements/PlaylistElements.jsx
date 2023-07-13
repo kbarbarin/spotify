@@ -12,7 +12,7 @@ export default function PlaylistElements() {
     const { id } = useParams();
     const location = useLocation();
     const [loading, setLoading] = useState(true);
-    const { playlist, setPlaylist } = useContext(AuthContext);
+    const { playlist, setPlaylist, screenSize } = useContext(AuthContext);
 
     useEffect(() => {
         moment.locale('fr');
@@ -29,26 +29,30 @@ export default function PlaylistElements() {
             {!loading &&
                 <div className="playlistElements-container">
                     <div style={{ display: "flex" }}>
-                        <div style={{ textAlign: 'center', flex: 1 / 21 }}>
+                        <div style={screenSize.width >= 900 ? { textAlign: 'center', flex: 1 / 21 } : { textAlign: 'center', flex: 3 / 21 }}>
                             <h3>#</h3>
                         </div>
-                        <div style={{ flex: 7.5 / 21 }}>
+                        <div style={screenSize.width >= 900 ? { flex: 7.5 / 21 } : { flex: 13 / 21 }}>
                             <h3>Titre</h3>
                         </div>
-                        <div style={{ flex: 5.5 / 21 }}>
-                            <h3>Album</h3>
-                        </div>
-                        <div style={{ flex: 5.5 / 21 }}>
-                            <h3>Date d'ajout</h3>
-                        </div>
-                        <div style={{ flex: 1.5 / 21 }}>
+                        {screenSize.width >= 900 &&
+                            <>
+                                <div style={{ flex: 5.5 / 21 }}>
+                                    <h3>Album</h3>
+                                </div>
+                                <div style={{ flex: 5.5 / 21 }}>
+                                    <h3>Date d'ajout</h3>
+                                </div>
+                            </>
+                        }
+                        <div style={screenSize.width >= 900 ? { flex: 1.5 / 21 } : { textAlign: 'center', flex: 5 / 21 }}>
                             <h3>Durée</h3>
                         </div>
                     </div>
                     <hr className="line" />
                     {playlist?.tracks?.items.map((track, index) => (
                         <div key={index}>
-                        <PlaylistElementsCard track={track} index={index}/>
+                            <PlaylistElementsCard track={track} index={index} />
                         </div>
                     ))}
                 </div>

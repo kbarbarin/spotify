@@ -1,5 +1,6 @@
 .playlistElements-container {
     background: linear-gradient(#232322 1%, #121212 5%);
+    padding: 0px 20px 20px 20px;
 }
 
 h3 {
