@@ -11,21 +11,21 @@ export default function PlaylistElements() {
     const { id } = useParams();
     const location = useLocation();
     const [loading, setLoading] = useState(true);
-    const {playlist, setPlaylist} = useContext(AuthContext);
+    const { playlist, setPlaylist } = useContext(AuthContext);
 
     useEffect(() => {
-        moment.locale('fr')
+        moment.locale('fr');
         const fetchPlaylist = async () => {
             await getPlaylist(location.state.token, id, setPlaylist);
             setLoading(false);
         };
-
-        fetchPlaylist();
+        if (loading)
+            fetchPlaylist();
     });
 
     const calculateTime = (ms) => {
-        const min = Math.floor((ms/1000/60) << 0);
-        const sec = Math.floor((ms/1000) % 60);
+        const min = Math.floor((ms / 1000 / 60) << 0);
+        const sec = Math.floor((ms / 1000) % 60);
 
         return (min.toString() + ':' + sec.toString());
     }
@@ -51,16 +51,16 @@ export default function PlaylistElements() {
                             <h3>Durée</h3>
                         </div>
                     </div>
-                    <hr className="line"/>
+                    <hr className="line" />
                     {playlist?.tracks?.items.map((track, index) => (
-                        <div key={index} style={{ display: "flex" }}>
+                        <div key={index} style={{ display: "flex", marginBottom: '20px' }}>
                             <div style={{ textAlign: 'center', flex: 1 / 21 }}>
                                 <p>{index + 1}</p>
                             </div>
                             <div style={{ display: 'flex', flex: 7.5 / 21 }}>
                                 <img src={track.track?.album.images[2].url} height={64} width={64} alt="" />
-                                <div style={{marginLeft: "15px"}}>
-                                    <p style={{color: 'white'}}>{track.track?.name}</p>
+                                <div style={{ marginLeft: "15px" }}>
+                                    <p style={{ color: 'white' }}>{track.track?.name}</p>
                                     <p>{track.track?.artists[0].name}</p>
                                 </div>
                             </div>
@@ -68,7 +68,7 @@ export default function PlaylistElements() {
                                 <p>{track.track?.album.name}</p>
                             </div>
                             <div style={{ flex: 5.5 / 21 }}>
-                            
+
                                 <p> {moment(track.added_at).format('D MMMM YYYY')}</p>
                             </div>
                             <div style={{ flex: 1.5 / 21 }}>
