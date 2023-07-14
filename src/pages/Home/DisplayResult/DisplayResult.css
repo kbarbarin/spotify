@@ -44,3 +44,19 @@
     transform: scale(1.1);
     background-color: #282828;
 }
+
+@media screen and (max-width: 900px) {
+    .result-container {
+        grid-template-columns: repeat(2, 1fr);
+        column-gap: 20px;
+        row-gap: 20px;
+        margin: 5% 5%;    
+    }
+    .result-info {
+        width: 150px;
+    }
+    .result-img, .result-img-artist {
+        width: 140px;
+        height: 140px;
+    }    
+}
